@@ -1,31 +1,33 @@
 class Ball:
   min_speed=30
   max_speed=60
+  radius=15
   position=None
   velocity=None
   def __init__(self,position,velocity):
     self.position=position
     self.velocity=velocity
-  
-  def __init__(self,position,velocity,min_speed,max_speed):
-    self.position=position
-    self.velocity=velocity
-    self.min_speed=min_speed
-    self.max_speed=max_speed
 
 class Paddle:
-  thickness=10
+  thickness=5
+  height=50
   position=None
   velocity=None
   
   def __init__(self,position,velocity):
     self.position=position
     self.velocity=velocity
-
-  def __init__(self,position,velocity,thickness):
-    self.position=position
-    self.velocity=velocity
-    self.thickness=thickness
 
   def hit(self,ball):
     pass
+
+class Agent:
+  name=""
+  points=0
+  side=0 # 0: left, 1: right
+  #paddle=None
+
+  def __init__(self,name,side):
+    self.name=name
+    self.side=side
+ #   self.paddle=paddle
