@@ -3,12 +3,14 @@ from math import sin,cos,pi,sqrt
 
 class Ball:
   diameter=15
+  step_size=0
   position=None
   step=None
 
   def __init__(self,position,step):
     self.position=position
     self.step=step
+    self.step_size=sqrt(step[0]**2+step[1]**2)
 
   def moveOneStep(self):
     self.position[0]+=self.step[0]
@@ -18,21 +20,12 @@ class Ball:
   def reverseUpDown(self):
     self.step[1]=-self.step[1]
   
-  def reverseLeftRight(self):
-    self.step[0]=-self.step[0]
+  def reverseLeftRight(self,alpha,side):
+    self.step[0]=self.step_size*cos(pi+pi*(1-side)+alpha*pi/4)
+    self.step[1]=self.step_size*sin(pi+pi*(1-side)+alpha*pi/4)
   
   def resetPosition(self):
     self.position=[0,0]
-
-"""class Board:
-  width=500
-  height=100
-  
-
-  def __init__(self,width,height):
-    self.width=width
-    self.height=height
-    #print("setup")"""
 
 class Paddle:
   thickness=8
@@ -53,9 +46,6 @@ class Paddle:
   def resetPosition(self):
     self.position[1]=0
 
-  def hit(self,ball):
-    pass
-
 class Agent:
   name=""
   points=0
@@ -63,7 +53,10 @@ class Agent:
   side=0 # 0: left, 1: right
   paddle=None
 
-  def __init__(self,name,side,paddle):
+  def __init__(self,name,side,paddle,isBot):
+    self.isBot=isBot
+    if isBot:
+      name+="_Bot"
     self.name=name
     self.side=side
     self.paddle=paddle

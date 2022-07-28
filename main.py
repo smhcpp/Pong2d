@@ -24,7 +24,7 @@ class Pong2d(QWidget):
     super().__init__()
     self.move(400,200)
     self.resize(700, 400)
-    self.game=Game(600,300,"mortimer","blake")
+    self.game=Game(600,300,"mortimer","blake",False,False)
     self.keylist=[]
     self.setupUI()
     
